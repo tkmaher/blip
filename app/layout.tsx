@@ -13,12 +13,29 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
 
-
+  const numDots = 829;
+  const dots = [];
+  let color = "white";
+  for (let i = 0; i < numDots; i++) {
+      // note: we are adding a key prop here to allow react to uniquely identify each
+      // element in this array. see: https://reactjs.org/docs/lists-and-keys.html
+      if (Math.random() < 0.3)
+        color = `black`;
+      else
+        color = "white";
+      dots.push(<div key={i} className="circle" style={{backgroundColor: color}}></div>);
+  }
 
   return (
     <html lang="en">
-      <body      >
-        {children}
+      <body style={{opacity: "0"}}>
+        <div className="parent">
+          <div className="parent-left">
+          </div>
+          <div className="parent-right">
+            {children}
+          </div>
+        </div>
       </body>
     </html>
   );

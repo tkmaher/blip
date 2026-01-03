@@ -1,17 +1,24 @@
-"use client";
-import Image from "next/image";
-import { useEffect } from "react";
+import Link from "next/link";
 import Info from "@/src/components/info";
+import { EmailPoster } from "@/src/components/edit";
+
 
 export default function Home() {
-
-  useEffect(() => {
-    document.body.style.filter = "blur(0px)";
-  }, []);
+  
 
   return (
-    <div className="flex-body">
-      <Info/>
+    <div>
+      <div className="flex-body">
+        <Info/>
+        <div className="link-flex">
+          <Link href={"/archive"}>Tickets</Link>
+
+          <Link href={"/archive"}>Archive</Link>
+
+        </div>
+      </div>
+      <EmailPoster/>
+
     </div>
   );
 }

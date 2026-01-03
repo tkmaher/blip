@@ -1,18 +1,37 @@
-import { useState } from "react"
+"use client";
+import { useEffect, useState } from "react";
+import ReactMarkdown from 'react-markdown';
 
-export default async function Info() {
+export default function Info() {
 
-    async function getInfo() {
-        const res = await fetch('https://api.example.com/posts', { next: { revalidate: 3600 } }); // Caches data for 1 hour
-        if (!res.ok) {
-            throw new Error('Failed to fetch data');
-        }
-        return res.json();
-    }
+    const [info, setInfo] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+        fetch("https://blip-worker.tomaszkkmaher.workers.dev/?data=info", { next: { revalidate: 3600 } })
+        .then((res) => res.json())
+        .then((data) => {
+            setInfo(data.info);
+            setLoading(false);
+            
+        }).catch(() => {
+            setError(true); 
+            setLoading(false);
+        }).finally(() => {
+            document.body.style.opacity = "1";
+        });
+    }, []);
     
-    const info = await getInfo();
 
     return (
-        <></>
+        <div>
+            <div className="info">
+                {error && <p>Error loading info.</p>}
+                {!loading && !error && <ReactMarkdown>{info}</ReactMarkdown>}
+
+                
+            </div>
+        </div>
     )
 }
