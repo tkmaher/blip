@@ -1,8 +1,8 @@
 # blipppppppppppp
 
-The website of blip.
+The website of blip, a Chicago-based events series.
 
-Test using 
+Test using:
 
 ```bash
 npm run dev

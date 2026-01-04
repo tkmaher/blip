@@ -9,15 +9,24 @@ export default function Home() {
   return (
     <div>
       <div className="flex-body">
-        <Info/>
+      <Info/>
         <div className="link-flex">
           <span><Link href={"/archive"}>Tickets</Link> ▪</span>
-
-          <span><Link href={"/archive"}>Archive</Link> ▪</span>
+          <span><a target="_blank" href={"mailto:blipppppppppppp@gmail.com"}>Contact</a> ▪</span>
 
         </div>
       </div>
-      <EmailPoster/>
+      <div id="bronze">
+        <img src="/temp.png"/>
+      </div>
+      <div className="flex-body">
+        <div className="link-flex">
+
+          <span><a target="_blank" href={"/archive"}>Archive</a> ▪</span>
+
+        </div>
+      </div>
+      <EmailPoster admin={false}/>
 
     </div>
   );

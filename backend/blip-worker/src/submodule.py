@@ -38,6 +38,15 @@ async def post_info(new_info, db):
         return False
     return True
 
+async def post_email(email, db):
+    print("Posting new email:", email)
+    try:
+        await db.prepare('INSERT INTO emails (address) VALUES (?)').bind(email).run()
+    except Exception as e:
+        print(e)
+        return False
+    return True
+
 async def delete_email(email, db):
     try:
         await db.prepare('DELETE FROM emails WHERE address = ?').bind(email).run()

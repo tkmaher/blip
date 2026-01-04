@@ -20,8 +20,8 @@ body {
   font-size: 0.7em;
   opacity: 0;
   transition: opacity 0.5s ease-in;
-
   margin-top: 2em;
+  background-color: #0a0a0a;
 }
 
 .parent {
@@ -34,6 +34,22 @@ body {
   gap: 1em;
 }
 
+#bronze {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  height: auto;
+
+  img {
+    max-width: 50%;
+    width: 50vw;
+    pointer-events: none;
+  }
+}
 
 #form {
   display: flex;
@@ -52,7 +68,6 @@ body {
 
   .info {
     flex: 1;
-    height: 20vh;
   }
 
 }
@@ -97,5 +112,8 @@ em {
 /* MOBILE */
 
 @media (max-width: 640px) {
-
+  #bronze img {
+    max-width: 100%;
+    width: 100%;
+  }
 }

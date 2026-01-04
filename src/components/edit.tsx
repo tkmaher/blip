@@ -2,26 +2,70 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
-export function EmailPoster() {
+function buildURL(params: Record<string, string> = {}) {
+    const url = new URL("https://blip-worker.tomaszkkmaher.workers.dev/");
+    Object.entries(params).forEach(([k, v]) =>
+        url.searchParams.set(k, v)
+    );
+    return url.toString();
+}
+
+export function EmailPoster(props: {admin: boolean}) {
+    const admin = props.admin;
+
     const [email, updateEmail]  = useState("");
+    const [parsing, setParsing] = useState(false);
 
     const formRef = useRef<HTMLFormElement | null>(null);
 
-    const handleSubmit = () => {
-
+    const handleSubmit = async (e: any) => {
+        if (!admin) e.preventDefault();
+        setParsing(true);
+        try {
+            const response = await fetch(
+                buildURL({
+                    data: "mailinglist",
+                }),
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({"email": email}),
+                }
+            );
+            if (!response.ok) throw new Error("Update failed");
+            console.log("response:", response);
+        } catch (err) {
+            console.error(err);
+        }
+        updateEmail("");
+        setParsing(false);
     };
 
-    const spacer = "\u00A0";
+    const spacer = "▪\u00A0";
 
     return (
-        <form id="form" ref={formRef} onSubmit={handleSubmit}>
-                ▪{spacer}
-            <input type="email" placeholder="Your email" required 
-                value={email}
-                onChange={(e) => updateEmail(e.target.value)}
-            />
-            <span><button type="submit">Subscribe</button> ▪</span>
-        </form>
+        <>
+            {admin ?
+                <form id="form" ref={formRef} onSubmit={handleSubmit}>
+                    <input type="email" placeholder="Add email..." required 
+                        value={email}
+                        name="email"
+                        onChange={(e) => updateEmail(e.target.value)}
+                    />
+                    <span><button type="submit">{parsing ? "Adding..." : "Add"}</button></span>
+                </form>
+                :
+                <form id="form" ref={formRef} onSubmit={handleSubmit}>       
+                    {spacer}
+                    <input type="email" placeholder="Your email" required 
+                        value={email}
+                        name="email"
+                        onChange={(e) => updateEmail(e.target.value)}
+                    />
+                    <span><button type="submit">{parsing ? "Submitting..." : "Subscribe"}</button> ▪</span>
+                </form>
+            }
+        </>
     )
 }
 
@@ -34,14 +78,6 @@ export default function EditPage() {
     const [loggedIn, setLoggedIn] = useState(false);
 
     const BASE_URL = "https://blip-worker.tomaszkkmaher.workers.dev/?data=info";
-
-    function buildURL(params: Record<string, string> = {}) {
-        const url = new URL(BASE_URL);
-        Object.entries(params).forEach(([k, v]) =>
-            url.searchParams.set(k, v)
-        );
-        return url.toString();
-    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -223,6 +259,7 @@ export default function EditPage() {
                     </>
                 )
             )}
+            <EmailPoster admin={true}/>
             <hr/>
             <Link href="/">Home</Link>
 
