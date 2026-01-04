@@ -35,7 +35,7 @@ export default function Home() {
             <div className="link-flex">
 
               <span><a target="_blank" href={"/archive"}>Archive</a> ▪</span>
-              <span><a onClick={() => setModcount(modCount+1)}>?</a> ▪</span>
+              <span><a style={{cursor: "pointer"}} onClick={() => setModcount(modCount+1)}>?</a> ▪</span>
 
             </div>
           </div>

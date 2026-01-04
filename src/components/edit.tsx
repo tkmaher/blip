@@ -256,10 +256,10 @@ export default function EditPage() {
 
                         {emails.length === 0 && <em>No emails in the mailing list.</em>}
 
+                        <EmailPoster admin={true}/>
                     </>
                 )
             )}
-            <EmailPoster admin={true}/>
             <hr/>
             <Link href="/">Home</Link>
 
