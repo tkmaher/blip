@@ -1,25 +1,27 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
 export function EmailPoster() {
     const [email, updateEmail]  = useState("");
 
+    const formRef = useRef<HTMLFormElement | null>(null);
+
     const handleSubmit = () => {
 
-    }
+    };
+
+    const spacer = "\u00A0";
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input type="email" placeholder="Your email" required 
-                    value={email}
-                    onChange={(e) => updateEmail(e.target.value)}
-                />
-                <br/>
-                <button type="submit">Subscribe</button>
-            </form>
-        </div>
+        <form id="form" ref={formRef} onSubmit={handleSubmit}>
+                ▪{spacer}
+            <input type="email" placeholder="Your email" required 
+                value={email}
+                onChange={(e) => updateEmail(e.target.value)}
+            />
+            <span><button type="submit">Subscribe</button> ▪</span>
+        </form>
     )
 }
 

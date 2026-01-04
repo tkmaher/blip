@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 
 export default function Info() {
 
-    const [info, setInfo] = useState(null);
+    const [info, setInfo] = useState<string>("");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
@@ -28,8 +28,11 @@ export default function Info() {
         <div>
             <div className="info">
                 {error && <p>Error loading info.</p>}
-                {!loading && !error && <ReactMarkdown>{info}</ReactMarkdown>}
-
+                {!loading && !error && <ReactMarkdown>
+                    {info.split('\n')
+                    .map(line => `▪ ${line}`)
+                    .join('\n')}
+                </ReactMarkdown>}
                 
             </div>
         </div>

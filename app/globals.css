@@ -5,12 +5,6 @@
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -23,44 +17,38 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  font-size: 0.8em;
+  font-size: 0.7em;
   opacity: 0;
   transition: opacity 0.5s ease-in;
+
+  margin-top: 2em;
 }
 
 .parent {
+  /*height: 100vh;
+  justify-content: center;
+  align-items: center;*/
   display: flex;
   line-height: 1.6;
   flex-direction: row;
   gap: 1em;
 }
 
-.parent-left {
-  flex: 0 0 0;
-  margin-left: 25%;
-  width: 50px;
-}
 
-.parent-right {
-  flex: 1;
-  margin-top: 20em;
-  margin-right: 25%;
-}
+#form {
+  display: flex;
+  flex-direction: row;
 
-.circle {
-  border: 0.5px solid var(--foreground);
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  display: inline-block;
-  margin-right: 0.5em;
-  background-color: var(--foreground);
-  transform: translate(50%, 50%);
+  span {
+    margin-left: auto;
+  }
 }
 
 .flex-body {
   display: flex;
   gap: 1em;
+  flex-direction: row;
+  width: 100vw;
 
   .info {
     flex: 1;
@@ -70,30 +58,26 @@ body {
 }
 
 .link-flex {
-  flex: 1;
+
+  margin-left: auto;
   text-align: right;
   display: flex;
   flex-direction: column;
 }
 
 a:hover {
-  text-decoration: underline;
-}
-
-input, button, textarea {
-  border: 0.5px solid var(--foreground);
-  padding: 0.5vh;
-  border-radius: 10px;
+  background-color: var(--foreground);
+  color: var(--background);
 }
 
 button {
-  margin: 0.5vh;
   cursor: pointer;
-  background-color: var(--background);
+  
 }
 
 button:hover {
-  filter: invert();
+  background-color: var(--foreground);
+  color: var(--background);
 }
 
 hr {
@@ -106,10 +90,12 @@ h2 {
   margin-bottom: 1vh;
 }
 
+em {
+  opacity: 70%;
+}
+
 /* MOBILE */
 
 @media (max-width: 640px) {
-  body {
-    font-size: 1em;
-  }
+
 }

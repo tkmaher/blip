@@ -11,9 +11,9 @@ export default function Home() {
       <div className="flex-body">
         <Info/>
         <div className="link-flex">
-          <Link href={"/archive"}>Tickets</Link>
+          <span><Link href={"/archive"}>Tickets</Link> ▪</span>
 
-          <Link href={"/archive"}>Archive</Link>
+          <span><Link href={"/archive"}>Archive</Link> ▪</span>
 
         </div>
       </div>
