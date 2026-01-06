@@ -23,8 +23,8 @@ export default function Home() {
         <div className="flex-body">
         <Info/>
           <div className="link-flex">
-            <span><Link href={"/archive"}>Tickets</Link> ▪</span>
-            <span><a target="_blank" href={"mailto:blipppppppppppp@gmail.com"}>Contact</a> ▪</span>
+            
+            <EmailPoster admin={false}/>
 
           </div>
         </div>
@@ -34,12 +34,12 @@ export default function Home() {
           <div className="flex-body">
             <div className="link-flex">
 
-              <span><a target="_blank" href={"/archive"}>Archive</a> ▪</span>
-              <span><a style={{cursor: "pointer"}} onClick={() => setModcount(modCount+1)}>?</a> ▪</span>
+              <span><a target="_blank" href={"mailto:blipppppppppppp@gmail.com"}>Contact</a></span>
+              <span><a href={"/archive"}>Archive</a></span>
+              <span><a style={{cursor: "pointer"}} onClick={() => setModcount(modCount+1)}>?</a></span>
 
             </div>
           </div>
-          <EmailPoster admin={false}/>
         </div>
 
       </div>

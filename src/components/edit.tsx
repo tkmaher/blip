@@ -41,7 +41,7 @@ export function EmailPoster(props: {admin: boolean}) {
         setParsing(false);
     };
 
-    const spacer = "▪\u00A0";
+    const spacer = "\u00A0";
 
     return (
         <>
@@ -50,19 +50,22 @@ export function EmailPoster(props: {admin: boolean}) {
                     <input type="email" placeholder="Add email..." required 
                         value={email}
                         name="email"
+                        
                         onChange={(e) => updateEmail(e.target.value)}
                     />
                     <span><button type="submit">{parsing ? "Adding..." : "Add"}</button></span>
                 </form>
                 :
-                <form id="form" ref={formRef} onSubmit={handleSubmit}>       
+                <form ref={formRef} onSubmit={handleSubmit}>       
                     {spacer}
                     <input type="email" placeholder="Your email" required 
                         value={email}
                         name="email"
+                        style={{textAlign: "right"}}
                         onChange={(e) => updateEmail(e.target.value)}
                     />
-                    <span><button type="submit">{parsing ? "Submitting..." : "Subscribe"}</button> ▪</span>
+                    <br/>
+                    <button type="submit">{parsing ? "Submitting..." : "Subscribe"}</button>
                 </form>
             }
         </>

@@ -30,7 +30,7 @@ export default function Info() {
                 {error && <p>Error loading info.</p>}
                 {!loading && !error && <ReactMarkdown>
                     {info.split('\n')
-                    .map(line => `▪ ${line}`)
+                    .map(line => `${line}`)
                     .join('\n')}
                 </ReactMarkdown>}
                 
