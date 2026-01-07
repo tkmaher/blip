@@ -25,34 +25,37 @@ export default function Home() {
         <div></div>
       </div>
 
+      <div id="footer">
+        <div className="flex-body" style={{marginTop: "98vh", marginLeft: "98vw"}}>
+          <div className="link-flex" style={{position: "fixed", transform: "translate(-100%, -100%"}}>
+
+            <span><a target="_blank" href={"mailto:blipppppppppppp@gmail.com"}>Contact</a></span>
+            <span><a onClick={() => setArchiveOpen(!archiveOpen)}>Archive</a></span>
+            <span><a style={{cursor: "pointer"}} onClick={() => setModcount(modCount+1)}>?</a></span>
+
+          </div>
+        </div>
+      </div>
+
     
       <div className="homepage">
       
         <div className="flex-body">
-        <Info/>
-        <Archive style={archiveStyle}/>
-
-        <div className="link-flex">
+          <Info/>
           
-          <EmailPoster admin={false}/>
 
-        </div>
-        </div>
-        
+          <div className="link-flex">
+            
+            <EmailPoster admin={false}/>
 
-        <div id="footer">
-          <div className="flex-body">
-            <div className="link-flex" style={{position: "fixed", transform: "translate(-100%, -100%"}}>
-
-              <span><a target="_blank" href={"mailto:blipppppppppppp@gmail.com"}>Contact</a></span>
-              <span><a onClick={() => setArchiveOpen(!archiveOpen)}>Archive</a></span>
-              <span><a style={{cursor: "pointer"}} onClick={() => setModcount(modCount+1)}>?</a></span>
-
-            </div>
           </div>
         </div>
+       
+        
 
       </div>
+      
+      <Archive style={archiveStyle}/>
     </>
   );
 }

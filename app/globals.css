@@ -38,13 +38,14 @@ body {
 .homepage {
   display: flex;
   flex-direction: column;
-  min-height: 98vh;
+  margin-bottom: 1em;
   align-items: flex-end;
   justify-content: space-between;
 }
 
 #footer {
   margin-top: auto;
+  position: absolute;
 }
 
 #form {
@@ -133,11 +134,8 @@ em {
 
 .archive-page {
   
-  position: absolute;
-  margin-top: 25vh;
   margin-bottom: 1em;
   height: 100%;
-  max-height: 74vh;
   width: 40vw;
 
   img {
