@@ -80,7 +80,7 @@ export default function EditPage() {
     const [password, setPassword] = useState("");
     const [loggedIn, setLoggedIn] = useState(false);
 
-    const BASE_URL = "https://blip-worker.tomaszkkmaher.workers.dev/?data=info";
+    const bcc = "mailto:info@blippp.org?bcc=" + emails.join(",");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -121,7 +121,12 @@ export default function EditPage() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(buildURL({ data: "mailinglist", password: localStorage.getItem("adminPassword") || "" }));
+                const response = await fetch(
+                    buildURL({ 
+                        data: "mailinglist", 
+                        password: localStorage.getItem("adminPassword") || "" 
+                    })
+                );
                 if (!response.ok) throw new Error("Email fetch failed");
                 const jsonData = await response.json();
                 setEmails(jsonData.mailinglist || []);
@@ -260,7 +265,13 @@ export default function EditPage() {
                         {emails.length === 0 && <em>No emails in the mailing list.</em>}
 
                         <EmailPoster admin={true}/>
+                        <br/>
+                        <em>
+                            <a href={bcc} target="_blank">Send an email...</a>
+
+                        </em>
                     </>
+                    
                 )
             )}
             <hr/>

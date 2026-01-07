@@ -1,7 +1,7 @@
 from workers import Response, WorkerEntrypoint
 import json
 from urllib.parse import urlparse, parse_qs
-from submodule import get_info, validate_pw, get_mailinglist, post_info, delete_email, post_email
+from submodule import get_info, validate_pw, get_mailinglist, post_info, delete_email, post_email, send_email
 
 corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -31,7 +31,7 @@ class Default(WorkerEntrypoint):
         if method == "POST" and password and validate_pw(password):
             if getter[0] == "login":
                 return Response("Login successful", status=200, headers=corsHeaders)
-            if getter[0] == "info":
+            elif getter[0] == "info":
                 print("Posting new info")
                 body = await request.json()
                 result = await post_info(body["info"], self.env.BLIP_DATABASE)
@@ -39,6 +39,7 @@ class Default(WorkerEntrypoint):
                     return Response("Info updated", status=200, headers=corsHeaders)
                 else:
                     return Response("Failed to update info", status=500)
+            
         elif method == "POST" and getter[0] == "mailinglist":
             body = await request.json()
             email = body.get("email", "")

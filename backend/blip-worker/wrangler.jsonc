@@ -13,6 +13,10 @@
 	"observability": {
 		"enabled": true
 	},
+
+	"vars": {
+	    "RESEND_API_KEY": "re_4Fz5r5YA_6EiPFgPqeknCdNW3Wx2KZRQr"
+	},
 	/**
 	 * Smart Placement
 	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement

@@ -43,7 +43,6 @@ body {
 
 #footer {
   margin-top: auto;
-  width: 100%;
 }
 
 #form {
@@ -75,6 +74,10 @@ body {
   flex-direction: column;
 }
 
+a {
+  cursor: pointer;
+}
+
 a:hover {
   background-color: var(--foreground);
   color: var(--background);
@@ -103,7 +106,7 @@ button:hover {
   pointer-events: none;
   mix-blend-mode: difference;
   background-color: white;
-  
+  z-index: 10;
 
 }
 
@@ -119,7 +122,37 @@ em {
   opacity: 70%;
 }
 
+/* ARCHIVE */
+
+#archive-target {
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+}
+
+.archive-page {
+  
+  position: absolute;
+  margin-top: 25vh;
+  margin-bottom: 1em;
+  height: 100%;
+  max-height: 74vh;
+  width: 40vw;
+
+  img {
+    min-width: 25%;
+    max-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 1em;
+  }
+
+  
+}
+
 /* MOBILE */
 
 @media (max-width: 640px) {
+  .archive-page {
+    width: 90vw;
+  }
 }
