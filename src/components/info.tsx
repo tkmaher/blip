@@ -1,4 +1,5 @@
 "use client";
+import remarkBreaks from "remark-breaks";
 import { useEffect, useState } from "react";
 import ReactMarkdown from 'react-markdown';
 
@@ -12,6 +13,7 @@ export default function Info() {
         fetch("https://blip-worker.tomaszkkmaher.workers.dev/?data=info", { next: { revalidate: 3600 } })
         .then((res) => res.json())
         .then((data) => {
+            console.log("Fetched info:", data);
             setInfo(data.info);
             setLoading(false);
             
@@ -28,11 +30,9 @@ export default function Info() {
         <div>
             <div className="info">
                 {error && <p>Error loading info.</p>}
-                {!loading && !error && <ReactMarkdown>
-                    {info.split('\n')
-                    .map(line => `${line}`)
-                    .join('\n')}
-                </ReactMarkdown>}
+                {!loading && !error && <div className="react-markdown"><ReactMarkdown remarkPlugins={[remarkBreaks]}>
+                    {info.replace(/\n/g, "&nbsp; \n")}
+                </ReactMarkdown></div>}
                 
             </div>
         </div>

@@ -20,6 +20,7 @@ export function EmailPoster(props: {admin: boolean}) {
 
     const handleSubmit = async (e: any) => {
         if (!admin) e.preventDefault();
+        if (parsing) return;
         setParsing(true);
         try {
             const response = await fetch(
@@ -80,6 +81,8 @@ export default function EditPage() {
     const [password, setPassword] = useState("");
     const [loggedIn, setLoggedIn] = useState(false);
 
+    const [updating, setUpdating] = useState(false);
+
     const bcc = "mailto:info@blippp.org?bcc=" + emails.join(",");
 
     useEffect(() => {
@@ -89,6 +92,8 @@ export default function EditPage() {
                 let response = await fetch(buildURL({ data: "info" }));
                 if (!response.ok) throw new Error("Info fetch failed");
                 let jsonData = await response.json();
+
+                console.log("Fetched info:", jsonData);
 
                 setInfo(jsonData.info || "");
 
@@ -145,7 +150,8 @@ export default function EditPage() {
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         e.stopPropagation();
-
+        if (updating) return;
+        setUpdating(true);
 
         try {
             const response = await fetch(
@@ -167,6 +173,8 @@ export default function EditPage() {
             console.error(err);
             alert("Error updating information section.");
         }
+
+        setUpdating(false);
     };
 
     async function handleDelete(email: string) {
@@ -243,7 +251,7 @@ export default function EditPage() {
                                 style={{ width: "100%", height: 200 }}
                                 placeholder="(Supports Markdown)"
                             />
-                            <button type="submit">Save changes</button>
+                            <button type="submit">{updating ? "Saving..." : "Save changes"}</button>
                         </form>
                         
 

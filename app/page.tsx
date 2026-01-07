@@ -15,8 +15,8 @@ export default function Home() {
   }
 
   const archiveStyle = {
+    display: archiveOpen ? "block" : "none",
     opacity: archiveOpen ? 1 : 0,
-    display: archiveOpen ? "visible" : "hidden"
   }
 
   return (
