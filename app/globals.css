@@ -43,9 +43,14 @@ body {
   justify-content: space-between;
 }
 
-#footer {
-  margin-top: auto;
-  position: absolute;
+.footer {
+  position: fixed;
+  right: 1vh;
+  bottom: 1vh;
+  white-space: nowrap;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
 }
 
 #form {
@@ -154,5 +159,7 @@ em {
 @media (max-width: 640px) {
   .archive-page {
     width: 90vw;
+    margin-right: auto;
+    margin-left: auto;
   }
 }
