@@ -34,7 +34,6 @@ export default function Archive(props: {style?: React.CSSProperties}) {
                     <div key={index}>
                         <img src={url}/>
 
-                        <img src={url} />
                     </div >
                 ))}
             </div>

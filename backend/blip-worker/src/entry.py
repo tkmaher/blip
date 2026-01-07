@@ -1,7 +1,7 @@
 from workers import Response, WorkerEntrypoint
 import json
 from urllib.parse import urlparse, parse_qs
-from submodule import get_info, validate_pw, get_mailinglist, post_info, delete_email, post_email, send_email
+from submodule import get_info, validate_pw, get_mailinglist, post_info, delete_email, post_email
 
 corsHeaders = {
   "Access-Control-Allow-Origin": "*",
