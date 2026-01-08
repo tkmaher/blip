@@ -209,7 +209,8 @@ export default function Info(props: {modOn: boolean}) {
                             <span
                                 className="info-absolute"
                                 style={{
-                                    transform: `translate(${pos.x + i}px, ${pos.y}px) 
+                                    transform: `translate(${pos.x + 2*i}px, ${pos.y}px) 
+                                    translateX(-100%)
                                     `,
                                 }}
                             >
