@@ -72,17 +72,21 @@ body {
     flex: 1;
   }
 
+  #info-source {
+    max-width: 100vw;
+  }
+
   #absolute-parent {
     position: absolute;
     top: 1em;
     left: -1em;
-    width: 100%;
+    width: 25vw;
   }
+  
 
   .info-absolute {
     position: absolute;
-    opacity: 0;
-    transition: opacity 0.01s linear;
+    right: 0;
 
   }
 

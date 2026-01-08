@@ -5,7 +5,8 @@ import ReactMarkdown from 'react-markdown';
 
 const getWindowDimensions = () => {
     // Use window.innerWidth and innerHeight for the viewport size
-    const { innerWidth: width, innerHeight: height } = window;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
     return {
       width,
       height
@@ -35,15 +36,15 @@ export default function Info(props: {modOn: boolean}) {
             setModcount(prevCount => {
                 const next = prevCount + 1;
                 const t = next / duration;
-                if (t > 1) return prevCount;
+                if (t > 1) return 0;
     
                 const W = windowDimensions.width;
                 const H = windowDimensions.height;
     
                 const theta = Math.PI * t;
     
-                const x = (W / 2) * (1 - Math.cos(theta));
-                const y = Math.max(0, H * Math.sin(theta));
+                const x = ((W / 2) * (1 - Math.cos(theta))) % W;
+                const y = (Math.max(0, H * Math.sin(theta))) % H;
     
                 setPositions(p => [...p, { x, y }]);
                 return next;
@@ -53,9 +54,10 @@ export default function Info(props: {modOn: boolean}) {
         // 2️⃣ Diagonal tane wave (erratic but bounded)
         () => {
             setModcount(prevCount => {
+                console.log(prevCount);
                 const next = prevCount + 1;
                 const t = next / duration;
-                if (t > 1) return prevCount;
+                if (t > 1) return 0;
     
                 const W = windowDimensions.width;
                 const H = windowDimensions.height;
@@ -65,8 +67,8 @@ export default function Info(props: {modOn: boolean}) {
                     Math.tan(t * 10) * 0.05 +
                     Math.tan(t * 23) * 0.03;
     
-                const x = W * (base + noise);
-                const y = H * (base + Math.abs(noise));
+                const x = (W * (base + noise)) % W;
+                const y = (H * (base + Math.abs(noise))) % H;
     
                 setPositions(p => [...p, { x, y }]);
                 return next;
@@ -76,9 +78,10 @@ export default function Info(props: {modOn: boolean}) {
         // 3️⃣ Expanding spiral arc (quarter-turn)
         () => {
             setModcount(prevCount => {
+                console.log(prevCount);
                 const next = prevCount + 1;
                 const t = next / duration;
-                if (t > 1) return prevCount;
+                if (t > 1) return 0;
     
                 const W = windowDimensions.width;
                 const H = windowDimensions.height;
@@ -86,8 +89,8 @@ export default function Info(props: {modOn: boolean}) {
                 const angle = (Math.PI / 2) * t;
                 const radius = t;
     
-                const x = W * radius * Math.cos(angle);
-                const y = H * radius * Math.tan(angle);
+                const x = (W * radius * Math.cos(angle)) % W;
+                const y = (H * radius * Math.tan(angle)) % H;
     
                 setPositions(p => [...p, { x, y }]);
                 return next;
@@ -97,15 +100,16 @@ export default function Info(props: {modOn: boolean}) {
         // 4️⃣ Bouncing curve (mirrored tane)
         () => {
             setModcount(prevCount => {
+                console.log(prevCount);
                 const next = prevCount + 1;
                 const t = next / duration;
-                if (t > 1) return prevCount;
+                if (t > 1) return 0;
     
                 const W = windowDimensions.width;
                 const H = windowDimensions.height;
     
-                const x = W * t;
-                const y = H * Math.abs(Math.sin(Math.PI * t));
+                const x = (W * t) % W;
+                const y = (H * Math.abs(Math.sin(Math.PI * t))) % H;
     
                 setPositions(p => [...p, { x, y }]);
                 return next;
@@ -115,9 +119,10 @@ export default function Info(props: {modOn: boolean}) {
         // 5️⃣ Ease-in / ease-out arc (smooth S-curve)
         () => {
             setModcount(prevCount => {
+                console.log(prevCount);
                 const next = prevCount + 1;
                 const t = next / duration;
-                if (t > 1) return prevCount;
+                if (t > 1) return 0;
     
                 const W = windowDimensions.width;
                 const H = windowDimensions.height;
@@ -128,8 +133,8 @@ export default function Info(props: {modOn: boolean}) {
                         ? 4 * t * t * t
                         : 1 - Math.pow(-2 * t + 2, 3) / 2;
     
-                const x = W * eased;
-                const y = H * Math.tan(Math.PI * eased);
+                const x = (W * eased) % W;
+                const y = (H * Math.tan(Math.PI * eased)) % H;
     
                 setPositions(p => [...p, { x, y }]);
                 return next;
@@ -138,17 +143,17 @@ export default function Info(props: {modOn: boolean}) {
     ];
 
 
+    useEffect(() => {
+        if (positions.length > 600) {
+            setPositions(positions.slice(1));
+        }
+    }, [positions]);
 
 
     useEffect(() => {
         if (!props.modOn) {
-            if (modCount >= duration) {
-                setModcount(0);
-                setPositions([]);
-            }
             return;
         }
-        
         
     
         const interval = setInterval(functors[functor], 100);
@@ -204,9 +209,8 @@ export default function Info(props: {modOn: boolean}) {
                             <span
                                 className="info-absolute"
                                 style={{
-                                    transform: `translate(${pos.y}px, ${pos.x}px) 
+                                    transform: `translate(${pos.x + i}px, ${pos.y}px) 
                                     `,
-                                    opacity: 1
                                 }}
                             >
                                 {renderedMarkdown}
