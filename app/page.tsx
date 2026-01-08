@@ -7,11 +7,11 @@ import Archive from "@/app/archive/archive";
 
 
 export default function Home() {
-  const [modCount, setModcount] = useState(0);
+  const [modOn, setModOn] = useState(false);
   const [archiveOpen, setArchiveOpen] = useState(false);
 
   const style = {
-    transform: `translate(${(1 - Math.abs((modCount % 4) - 2)) * 100}%, 0%)`
+    //transform: `translate(${(1 - Math.abs((modCount % 4) - 2)) * 100}%, 0%)`
   }
 
   const archiveStyle = {
@@ -24,33 +24,29 @@ export default function Home() {
       <div id="inverting-overlay" style={style}>
         <div></div>
       </div>
-
-        
-          
-
     
       <div className="homepage">
       
         <div className="flex-body">
-          <Info/>
-          
+
+          <Info modOn={modOn}/>
 
           <div className="link-flex">
             
             <EmailPoster admin={false}/>
 
           </div>
+
         </div>
-       
-      
 
       </div>
 
       <div className="footer">
 
-        <span><a target="_blank" href={"mailto:blipppppppppppp@gmail.com"}>Contact</a></span>
         <span><a onClick={() => setArchiveOpen(!archiveOpen)}>Archive</a></span>
-        <span><a style={{cursor: "pointer"}} onClick={() => setModcount(modCount+1)}>?</a></span>
+        <span><a target="_blank" href={"mailto:blipppppppppppp@gmail.com"}>Contact</a></span>
+        {/*<span><a style={{cursor: "pointer"}} onClick={() => setModcount(modCount+1)}>?</a></span>*/}
+        <span><a style={{cursor: "pointer"}} onClick={() => setModOn(!modOn)}>?</a></span>
 
       </div>
       
