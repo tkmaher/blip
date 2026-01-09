@@ -6,7 +6,7 @@ import remarkBreaks from "remark-breaks";
 
 type Vec2 = { x: number; y: number };
 
-const DURATION = 100;
+const DURATION = 600;
 const MAX_POSITIONS = 600;
 
 const clamp = (v: number, min: number, max: number) =>
@@ -171,7 +171,7 @@ export default function Info({ modOn }: { modOn: boolean }) {
                     className="info-absolute"
                     style={{
                     
-                    transform: `translate(${p.x - (i % 100)}px, ${(p.y - (i % 100))}px)`,
+                    transform: `translate(${p.x}px, ${(p.y)}px)`,
                     willChange: "transform",
                     }}
                 >

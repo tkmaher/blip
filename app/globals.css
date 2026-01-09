@@ -174,11 +174,16 @@ em {
     position: fixed;
     width: 100%;
   }
+  
+  .info-absolute {
+    top: 0;
+    left: 0;
+  }
 
   .info-overlay-backdrop {
     position: absolute;
-    top: 1vh;
-    left: 1vh;
+    top: 0;
+    left: 0;
   }
 
 
