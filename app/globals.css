@@ -74,8 +74,8 @@ body {
 
   .info-absolute {
     position: absolute;
-    left: 0;
-    top: 0;
+    left: 1vh;
+    top: 1vh;
   }
 }
 
@@ -175,10 +175,7 @@ em {
     width: 100%;
   }
   
-  .info-absolute {
-    top: 0;
-    left: 0;
-  }
+
 
   .info-overlay-backdrop {
     position: absolute;
