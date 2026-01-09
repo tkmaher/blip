@@ -1,6 +1,6 @@
-# blipppppppppppp
+# blip
 
-The website of blip, a Chicago-based events series.
+The website of [blip](https://blippp.org), a Chicago-based events series.
 
 Test using:
 
