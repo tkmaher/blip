@@ -21,7 +21,6 @@ export default function Info({ modOn }: { modOn: boolean }) {
     const [functorIndex, setFunctorIndex] = useState(
       Math.floor(Math.random() * 5)
     );
-    const [multiplier, setMultiplier] = useState(1.0);
   
     const tickRef = useRef(0);
     const viewportRef = useRef({ width: 0, height: 0 });
@@ -35,9 +34,7 @@ export default function Info({ modOn }: { modOn: boolean }) {
               document.documentElement.clientWidth;
             viewportRef.current.height =
               document.documentElement.clientHeight;
-            if (viewportRef.current.width < 768) {
-                setMultiplier(0.6);
-            }
+           
           };
         update();
         window.addEventListener("resize", update);
@@ -112,7 +109,7 @@ export default function Info({ modOn }: { modOn: boolean }) {
         setPositions((prev) => {
 
           const nextPos = {
-            x: x % Math.floor(viewportRef.current.width * multiplier),
+            x: x % Math.floor(viewportRef.current.width),
             y: y % Math.floor(viewportRef.current.height),                
           };
           const next = [...prev, nextPos];
@@ -162,25 +159,27 @@ export default function Info({ modOn }: { modOn: boolean }) {
 
   return (
     <div className="info">
-      <div id="info-source">{markdown}</div>
+         <div id="info-source">{markdown}</div>
 
-      <div
-        className="info-overlay"
-      >
-        {positions.map((p, i) => (
-          <span
-            key={i}
-            className="info-absolute"
-            style={{
-             
-              transform: `translate(${p.x - (i % 100)}px, ${(p.y - (i % 100))}px)`,
-              willChange: "transform",
-            }}
-          >
-            {markdown}
-          </span>
-        ))}
-      </div>
-    </div>
+        <div className="info-overlay-backdrop">
+            <div
+                className="info-overlay"
+            >
+                {positions.map((p, i) => (
+                <span
+                    key={i}
+                    className="info-absolute"
+                    style={{
+                    
+                    transform: `translate(${p.x - (i % 100)}px, ${(p.y - (i % 100))}px)`,
+                    willChange: "transform",
+                    }}
+                >
+                    {markdown}
+                </span>
+                ))}
+            </div>
+            </div>
+        </div>
   );
 }

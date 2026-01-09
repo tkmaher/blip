@@ -73,10 +73,9 @@ body {
   }
 
   .info-absolute {
-    max-width: 20vw;
     position: absolute;
-    left: 1vh;
-    top: 1vh;
+    left: 0;
+    top: 0;
   }
 }
 
@@ -170,4 +169,17 @@ em {
     margin-right: auto;
     margin-left: auto;
   }
+
+  .info-overlay {
+    position: fixed;
+    width: 100%;
+  }
+
+  .info-overlay-backdrop {
+    position: absolute;
+    top: 1vh;
+    left: 1vh;
+  }
+
+
 }
