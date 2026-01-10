@@ -90,7 +90,11 @@ export default function Info({ modOn }: { modOn: boolean }) {
      * Animation loop
      */
     useEffect(() => {
-      if (!modOn) return;
+      if (!modOn)  {
+        setPositions([]);
+        tickRef.current = 0;
+        return;
+      };
   
       const interval = setInterval(() => {
         const next = tickRef.current + 1;
@@ -137,13 +141,11 @@ export default function Info({ modOn }: { modOn: boolean }) {
     useEffect(() => {
       fetch("https://blip-worker.tomaszkkmaher.workers.dev/?data=info")
         .then((r) => r.json())
-        .then((d) => setInfo(d.info))
-        .catch(() => setError(true))
-        .finally(() => { 
-            setLoading(false);
-            document.body.style.opacity = "1";
-        }
-            );
+        .then((d) => {
+          setInfo(d.info);
+          setLoading(false);
+          document.body.style.opacity = "1";
+        }).catch(() => setError(true))
     }, []);
   
     const markdown = useMemo(
