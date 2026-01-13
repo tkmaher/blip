@@ -127,6 +127,10 @@ em {
   opacity: 70%;
 }
 
+.admin-email:hover {
+  text-decoration: line-through;
+}
+
 /* ARCHIVE */
 
 #archive-target {

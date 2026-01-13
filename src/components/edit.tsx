@@ -259,25 +259,28 @@ export default function EditPage() {
 
                         <h2>Mailing List</h2>
 
+                        <em style={{wordBreak: "break-all"}}>
+                            {bcc}
+
+                        </em>
+                        <br/><br/>
+
                         {emails.map((email, index) => (
-                            <div key={index}>
+                            <div key={index} className="admin-email">
                                 {email}
                                 <a style={{float: "right", cursor: "pointer"}} onClick={() => {
                                     const updatedEmails = emails.filter((_, i) => i !== index);
                                     setEmails(updatedEmails);
                                     handleDelete(email);
-                                }}>Delete</a>
+                                }}
+                                >Delete</a>
                             </div>
                         ))}
 
                         {emails.length === 0 && <em>No emails in the mailing list.</em>}
 
                         <EmailPoster admin={true}/>
-                        <br/>
-                        <em>
-                            {bcc}
-
-                        </em>
+                        
                     </>
                     
                 )
