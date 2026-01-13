@@ -142,6 +142,7 @@ export default function Info({ modOn }: { modOn: boolean }) {
       fetch("https://blip-worker.tomaszkkmaher.workers.dev/?data=info")
         .then((r) => r.json())
         .then((d) => {
+          console.log("fetched", d.info);
           setInfo(d.info);
           setLoading(false);
           document.body.style.opacity = "1";

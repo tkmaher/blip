@@ -83,7 +83,7 @@ export default function EditPage() {
 
     const [updating, setUpdating] = useState(false);
 
-    const bcc = "mailto:info@blippp.org?bcc=" + emails.join(",");
+    const bcc = emails.join(",");
 
     useEffect(() => {
         const fetchData = async () => {
@@ -275,7 +275,7 @@ export default function EditPage() {
                         <EmailPoster admin={true}/>
                         <br/>
                         <em>
-                            <a href={bcc} target="_blank">Send an email...</a>
+                            {bcc}
 
                         </em>
                     </>

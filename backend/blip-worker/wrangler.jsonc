@@ -17,6 +17,13 @@
 	"vars": {
 	    "RESEND_API_KEY": "re_4Fz5r5YA_6EiPFgPqeknCdNW3Wx2KZRQr"
 	},
+
+	"kv_namespaces": [
+		{
+			"binding": "INFO_CACHE",
+			"id": "d813e4c39c61498994abee8acc0a6173"
+		}
+	],
 	/**
 	 * Smart Placement
 	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
