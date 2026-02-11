@@ -18,6 +18,7 @@ export default function Archive(props: {style?: React.CSSProperties}) {
                     tmp.push(item.image.display.url);
                 });
                 console.log("Fetched archive URLs:", tmp);
+                tmp.reverse();
                 setUrls(tmp);
             } catch (error) {
                 console.error("Error fetching archive URLs:", error);
